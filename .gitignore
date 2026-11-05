@@ -3,3 +3,7 @@ admin.html
 README.md
 update-site.bat
 build-single.ps1
+
+# สคริปต์เพิ่มพัสดุผ่านแชท
+add-parcels.ps1
+CLAUDE.md
