@@ -24,6 +24,63 @@
     <div id="results"></div>
   </section>
 
+  <section class="panel howto" aria-labelledby="howtoTitle">
+    <h2 id="howtoTitle">วิธีเช็กพัสดุ ง่าย ๆ 3 ขั้นตอน</h2>
+    <ol class="steps">
+      <li>
+        <div class="step-text">
+          <span class="step-no">1</span>
+          <div><b>พิมพ์ชื่อผู้รับ หรือเบอร์โทร 4 ตัวท้าย</b>
+          <p class="muted">ใช้ชื่อเดียวกับที่แจ้งตอนสั่งซื้อ แล้วกดปุ่ม "ค้นหา"</p></div>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-search"><span class="mock-input">อารยา<i class="caret"></i></span><span class="mock-btn">ค้นหา</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="step-text">
+          <span class="step-no">2</span>
+          <div><b>ดูเลขพัสดุ EMS ของคุณ</b>
+          <p class="muted">เลขพัสดุมี 13 ตัว ขึ้นต้นด้วยตัวอักษร 2 ตัว และลงท้ายด้วย TH</p></div>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-card">
+            <div class="row between"><b>อารยา</b><span class="muted">ส่ง 04/11/2569 · เทพา</span></div>
+            <div class="track">JD 3098 0171 3 TH</div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="step-text">
+          <span class="step-no">3</span>
+          <div><b>กด "ดูสถานะที่ไปรษณีย์ไทย"</b>
+          <p class="muted">ระบบจะเปิดเว็บไปรษณีย์ไทย แสดงว่าพัสดุอยู่ที่ไหนแล้ว</p></div>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-timeline">
+            <span class="done">รับฝาก</span><span class="done">ระหว่างขนส่ง</span><span class="now">ออกนำจ่าย</span><span>นำจ่ายสำเร็จ</span>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <details class="faq">
+      <summary>ค้นหาแล้วไม่เจอ ทำอย่างไร?</summary>
+      <ul>
+        <li>ลองพิมพ์ชื่อสั้นลง เช่น พิมพ์แค่ชื่อเล่นหรือชื่อจริง ไม่ต้องใส่ "คุณ" หรือนามสกุล</li>
+        <li>ถ้าเพิ่งสั่งซื้อ ร้านจะเพิ่มเลขพัสดุให้หลังนำของไปส่งไปรษณีย์แล้ว</li>
+        <li>ยังไม่เจอ ทักแชทร้านช่องทางเดียวกับที่สั่งซื้อได้เลยครับ</li>
+      </ul>
+    </details>
+    <details class="faq">
+      <summary>กดลิงก์ไปรษณีย์ไม่ได้ ทำอย่างไร?</summary>
+      <ul>
+        <li>กด "คัดลอกเลข" แล้วนำเลขไปวางในแอป Thailand Post หรือเว็บ track.thailandpost.co.th</li>
+        <li>หรือโทรถามไปรษณีย์ไทย 1545 พร้อมแจ้งเลขพัสดุ</li>
+      </ul>
+    </details>
+  </section>
+
   <footer>ตรวจสอบสถานะล่าสุดได้ที่ไปรษณีย์ไทย โทร 1545 · LINE @thailandpost</footer>
 </main>
 <div class="toast" id="toast" role="status"></div>

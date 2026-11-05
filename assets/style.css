@@ -52,4 +52,29 @@ td.t{font-variant-numeric:tabular-nums;white-space:nowrap}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw}
 .toast.show{opacity:1}
 @media (prefers-reduced-motion: reduce){.toast{transition:none}}
+/* วิธีเช็กพัสดุ */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.steps li{display:grid;gap:10px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.steps li:last-child{border-bottom:0;padding-bottom:0}
+.step-text{display:flex;gap:12px;align-items:flex-start}
+.step-no{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-fg);
+  display:grid;place-items:center;font-family:var(--display);font-weight:600}
+.mock{margin-left:42px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:.9rem;pointer-events:none;user-select:none}
+.mock-search{display:flex;gap:6px}
+.mock-input{flex:1;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 10px}
+.caret{display:inline-block;width:1px;height:1em;background:var(--fg);margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.mock-btn{background:var(--accent);color:var(--accent-fg);border-radius:8px;padding:6px 12px;font-weight:600}
+.mock-card{display:grid;gap:4px}
+.mock-card .track{font-size:1.1rem;color:var(--accent)}
+.mock-timeline{display:flex;flex-wrap:wrap;gap:6px}
+.mock-timeline span{border-radius:999px;padding:3px 10px;font-size:.82rem;border:1px solid var(--line);color:var(--muted)}
+.mock-timeline span.done{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.mock-timeline span.done::before{content:"✓ "}
+.mock-timeline span.now{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+@media (max-width:420px){.mock{margin-left:0}}
+@media (prefers-reduced-motion: reduce){.caret{animation:none}}
+.faq{border-top:1px solid var(--line);padding-top:10px}
+.faq summary{cursor:pointer;font-weight:600}
+.faq ul{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:.92rem;display:grid;gap:4px}
 footer{font-size:.82rem;color:var(--muted);text-align:center}
