@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>เช็กพัสดุ 168 เทวกุลเกษตร</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600&family=Sarabun:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">บริษัท 168 เทวกุลเกษตร จำกัด</p>
+    <h1>เช็กเลขพัสดุของคุณ</h1>
+    <p class="muted" id="stamp">ส่งทาง EMS ไปรษณีย์ไทย</p>
+  </header>
+
+  <section class="panel">
+    <form class="search" id="searchForm">
+      <input id="q" type="search" placeholder="ชื่อผู้รับ หรือเบอร์โทร 4 ตัวท้าย" autocomplete="off" aria-label="ค้นหาพัสดุ">
+      <button class="primary" type="submit">ค้นหา</button>
+    </form>
+    <p class="muted">พิมพ์ชื่อที่ใช้สั่งซื้อ หรือเบอร์โทร 4 ตัวท้าย แล้วกดค้นหา</p>
+    <div id="results"></div>
+  </section>
+
+  <footer>ตรวจสอบสถานะล่าสุดได้ที่ไปรษณีย์ไทย โทร 1545 · LINE @thailandpost</footer>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="data.js"></script>
+<script src="assets/common.js"></script>
+<script>
+(function () {
+  var P = Parcel, $ = P.$;
+  var entries = Array.isArray(window.SHIPMENTS) ? window.SHIPMENTS : [];
+
+  var latest = entries.map(function (e) { return e.d; }).sort().pop();
+  if (latest) $('stamp').textContent = 'ส่งทาง EMS ไปรษณีย์ไทย · อัปเดตล่าสุด ' + P.thDate(latest);
+
+  function search(q) {
+    q = q.trim();
+    var out = $('results');
+    if (q.length < 2) { out.innerHTML = '<p class="notice">พิมพ์อย่างน้อย 2 ตัวอักษร</p>'; return; }
+
+    var qd = P.digits(q), ql = q.toLowerCase(), qt = P.normTrack(q);
+    var hits = entries.filter(function (e) {
+      if (e.n && e.n.toLowerCase().indexOf(ql) > -1) return true;
+      if (qd.length === 4 && e.p && P.digits(e.p).slice(-4) === qd) return true;
+      if (qt.length >= 6 && e.t.indexOf(qt) > -1) return true;
+      return false;
+    }).sort(P.byDateDesc);
+
+    if (!hits.length) {
+      out.innerHTML = '<p class="notice">ไม่พบรายการ ลองพิมพ์ชื่อตามที่แจ้งไว้ตอนสั่งซื้อ หรือติดต่อร้านครับ</p>';
+      return;
+    }
+    out.innerHTML = hits.map(function (e) {
+      return '<div class="result">' +
+        '<div class="row between"><span class="name">' + P.esc(e.n) + '</span>' +
+        '<span class="muted">ส่ง ' + P.esc(P.thDate(e.d)) + (e.z ? ' · ' + P.esc(e.z) : '') + '</span></div>' +
+        '<div class="track">' + P.esc(P.fmtTrack(e.t)) + '</div>' +
+        '<div class="row"><a class="btn" href="' + P.postLink(e.t) + '" target="_blank" rel="noopener">ดูสถานะที่ไปรษณีย์ไทย</a>' +
+        '<button class="small" type="button" data-copy="' + P.esc(e.t) + '">คัดลอกเลข</button></div>' +
+        '</div>';
+    }).join('');
+  }
+
+  $('searchForm').addEventListener('submit', function (ev) { ev.preventDefault(); search($('q').value); });
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-copy]');
+    if (b) P.copy(b.getAttribute('data-copy'));
+  });
+})();
+</script>
+</body>
+</html>
